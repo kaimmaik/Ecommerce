@@ -66,7 +66,7 @@ export default function HomeScreen() {
           </Carousel>
         </>
       )} */}
-
+<span className="span"></span><span className="span"></span>
                 <div className="sidebar">
                   <aside className={sidebarIsOpen ? 'open' : ''}>
                                               <ul className="categories">

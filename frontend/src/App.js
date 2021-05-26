@@ -39,8 +39,8 @@ function App() {
     <BrowserRouter>
       <div className="grid-container">
         <header className="row">
-          <Link className="brand" to="/" />
-          <div>
+          <Link className=" brand" to="/" />
+          <div className="">
             <Route
               render={({ history }) => (
                 <SearchBox history={history}></SearchBox>
@@ -122,15 +122,19 @@ function App() {
                     </Link>
                   </li>
                 </ul>
+                
               </div>
             ) : (
               <Link to="/signin">Sign In</Link>
             )}
+            <span className="span"></span>
           </div>
+          
         </header>
+        <span className="span"></span>
         <main>
-          <span className="span"></span>
-          <span className="span"></span>
+          
+        <span className="span"></span><span className="span"></span><span className="span"></span>
           <Route path="/product/:id" component={ProductScreen} exact></Route>
           <Route path="/cart/:id?" component={CartScreen}></Route>
           <Route path="/signin" component={SigninScreen}></Route>
