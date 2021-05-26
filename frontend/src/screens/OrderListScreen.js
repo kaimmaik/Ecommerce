@@ -47,11 +47,7 @@ export default function OrderListScreen(props) {
               <th>TOTAL</th>
               <th>PAID</th>
               <th>DELIVERED</th>
-
               <th>ACTIONS</th> 
-
-
-
             </tr>
           </thead>
           <tbody>
