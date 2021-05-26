@@ -16,6 +16,7 @@ body{
 
   background-image: url(bg.jpg);
   background-position:top;
+  /* background-repeat: no-repeat; */
   background: cover;
 }
 #root{
@@ -53,7 +54,6 @@ footer{
     width: 29rem;
     height: 5rem;
 }
-
 h1{
   font-size: 1.8rem;
   padding: 1rem 0;
@@ -103,24 +103,14 @@ header a{
     padding: 1rem ;
     margin-left: 1rem;
     text-transform: uppercase;
-    /* display: inline-block; */
-   
 }
-
 .badge {
-  /* background-color: #f02020; */
-  /* color: #ffffff; */
-  /* border-radius: 50%; */
-  /* padding: 0.2rem 0.7rem; */
   font-size: 2.7rem;
-  
-  /* margin-left: 0.2rem; */
 }
 .span{
   /* margin: 2rem; */
   padding: 3rem;
 }
-
 .row{
   display: flex; /*flex to create item next to each other */
   flex-wrap: wrap;
@@ -158,11 +148,6 @@ img.large{
 }
 /* Card */
 .card{
-  /* border: 0.1rem #c0c0c0 solid;
-  background-color: #f8f8f8;
-  border-radius: 0.5rem;
-  margin: 1rem;
-  padding: 00.2rem; */
   position: relative;
     width: 300px;
     height: 400px;
@@ -185,18 +170,11 @@ position: relative;
     transition: 0.5s ease-in-out;
     opacity: 1;
   }
-
   .card-Product{
     border: 0.1rem #c0c0c0 solid;
-    
     border-radius: 0.5rem;
     margin: 1rem;
-
-
-
     position: relative;
-    
-    /* margin: 20px 40px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -204,7 +182,6 @@ position: relative;
     background-color: rgba(255, 255, 255, 0.col-2);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
-
   }
   .card-Product-body {
     padding: 1rem;
@@ -232,8 +209,6 @@ position: relative;
     transition: 0.5s ease-in-out;
     visibility: hidden;
 }
-
-
 .card:hover .card-body {
   opacity: 1;
   visibility: visible;
@@ -316,20 +291,6 @@ aside li {
 button.close-sidebar {
   padding: 0.3rem 0.8rem;
 }
-
-/* Form */
-/* .form {
-  max-width: 60rem;
-  margin: 0 auto;
-}
-.form > div {
-  display: flex;
-  flex-direction: column;
-  margin: 1rem;
-}
-.form label {
-  margin: 1rem 0;
-} */
 .box{
   position: relative;
   display: flex;
@@ -337,8 +298,6 @@ button.close-sidebar {
   align-items: center;
   margin: 10%;
   min-height: fit-content;
-  /* min-height: 100vh; */
-  
 }
 .container{
   position: relative;
@@ -374,8 +333,7 @@ button.close-sidebar {
   width: 100%;
   margin-top: 1.25rem;
 }
-.form .inputBox input{
-
+.form .inputBox input, textArea{
   width: 70%;
   padding: 1rem 1.5rem;
   margin: 0.5rem;
@@ -389,7 +347,6 @@ button.close-sidebar {
 }
 .form .inputBox input::placeholder{
     color: rgba(0, 0, 0, 0.575);
-    
 }
 .form .inputBox input[type="submit"]{
   background: #fff;
@@ -407,9 +364,6 @@ button.close-sidebar {
   color: #fff;
   font-weight: 600;
 }
-
-
-
 /* Dropdown */
 .dropdown {
    display: inline-block;
@@ -429,7 +383,6 @@ button.close-sidebar {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
 /* Checkout Steps */
 .checkout-steps > div {
   border-top: 0.3rem #c0c0c0 solid;
@@ -442,4 +395,54 @@ button.close-sidebar {
 .checkout-steps > div.active {
   border-top-color: #f08000;
   color: #f08000;
+}
+
+.search-input{
+  width: 0rem;
+  height: 3.3rem;
+  opacity: 0;
+  transition: 0.4s;
+  /* border: none; */
+  background: none;
+  font-size: 16px;
+
+}
+.search:hover  .search-input{
+  width: 15rem;
+  height: 3.3rem;
+  opacity: 1;
+  transition: 0.4s;
+  background: #a4a4a483;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  box-shadow: 0 5px 15px rgba(128, 26, 26, 0.1);
+}
+
+
+/* Map */
+.full-container {
+  margin: -1rem;
+  height: calc(100% + 2rem);
+}
+.map-input-box {
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0.5rem auto;
+  width: 25rem;
+  height: 4rem;
+  display: flex;
+}
+.map-input-box input {
+  border-radius: 1rem 0 0 1rem;
+  border-right: 0;
+}
+.map-input-box button {
+  border-radius: 0 1rem 1rem 0;
+  border-left: 0;
 }

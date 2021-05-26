@@ -12,9 +12,9 @@ function Product(props) {
                   </a>
                   <div className="card-body">
                   {/* <a href={`/product/${product._id}`}> </a> */}
-                  <Rating rating={product.rating} numReviews={product.numReviews}/>
-                  <div className="price">{product.price}$</div>
-                  </div>
+                     <Rating rating={product.rating} numReviews={product.numReviews}/>
+                     <div className="price">{product.price}$</div>
+                     </div>
               </div>
     );
 }

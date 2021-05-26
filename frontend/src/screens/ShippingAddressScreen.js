@@ -69,11 +69,13 @@ export default function ShippingAddressScreen(props) {
   return (
     <div>
       <CheckoutSteps step1 step2></CheckoutSteps>
+      <div className="box">
+      <div className="container ">
       <form className="form" onSubmit={submitHandler}>
         <div>
           <h1>Shipping Address</h1>
         </div>
-        <div>
+        <div className="inputBox">
           <label htmlFor="fullName">Full Name</label>
           <input
             type="text"
@@ -84,7 +86,7 @@ export default function ShippingAddressScreen(props) {
             required
           ></input>
         </div>
-        <div>
+        <div className="inputBox">
           <label htmlFor="address">Address</label>
           <input
             type="text"
@@ -95,7 +97,7 @@ export default function ShippingAddressScreen(props) {
             required
           ></input>
         </div>
-        <div>
+        <div className="inputBox">
           <label htmlFor="city">City</label>
           <input
             type="text"
@@ -106,7 +108,7 @@ export default function ShippingAddressScreen(props) {
             required
           ></input>
         </div>
-        <div>
+        <div className="inputBox">
           <label htmlFor="postalCode">Postal Code</label>
           <input
             type="text"
@@ -117,7 +119,7 @@ export default function ShippingAddressScreen(props) {
             required
           ></input>
         </div>
-        <div>
+        <div className="inputBox">
           <label htmlFor="country">Country</label>
           <input
             type="text"
@@ -128,19 +130,21 @@ export default function ShippingAddressScreen(props) {
             required
           ></input>
         </div>
-        <div>
+        <div className="inputBox">
           <label htmlFor="chooseOnMap">Location</label>
           <button type="button" onClick={chooseOnMap}>
             Choose On Map
           </button>
         </div>
-        <div>
+        <div className="inputBox">
           <label />
-          <button className="primary" type="submit">
+          <button  type="submit">
             Continue
           </button>
         </div>
       </form>
+      </div>
+    </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link,  } from 'react-router-dom';
-import { listProducts, listProductsCategory } from '../actions/productActions';
+import { listProductsByName, listProductsCategory } from '../actions/productActions';
 import {LoadingBox} from '../components/LoadingBox';
 import {MessageBox} from '../components/MessageBox';
 import Product from '../components/Product';
@@ -10,26 +10,58 @@ import Product from '../components/Product';
 
 export default function SearchScreen(props) {
   const category = props.match.params.category;
+  const name = props.match.params.name;
+  console.log(name);
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
-
+  
+  
+ 
   const productCategoryList = useSelector((state) => state.productCategoryList);
   const {
     loading: loadingCategories,
     error: errorCategories,
     categories,
   } = productCategoryList;
+
+
   useEffect(() => {
-    dispatch(
-      listProductsCategory(category)
-    );
-  }, [category, dispatch]);
+    console.log('effect' +name);
+    name ?(
+    dispatch(listProductsByName(name)) )
+    :dispatch(listProductsCategory(category));
+  }, [dispatch,name,category]);
+
+  // dispatch(listProductsCategory(category));
+  const categorylisthandler = (e)=>{
+    // e.preventDefault();
+    dispatch(listProductsCategory(category));
+  }
+
+  // useEffect(() => {
+  //   dispatch(
+  //     listProductsCategory(category),
+  //     // listProductsByName(name),
+  //   );
+  // }, [category,  dispatch]);
+
+
+
+  // useEffect(() => {
+  //   dispatch(
+  //     listProductsByName(name),
+  //   );
+  // }, [name,  dispatch]);
+
 
   
   return (
     <div>
+      {console.log('return' +name)}
+
       <div className="row">
+
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (
@@ -61,20 +93,22 @@ export default function SearchScreen(props) {
             ) : errorCategories ? (
               <MessageBox variant="danger">{errorCategories}</MessageBox>
             ) : (
-              <ul>
+              <ul onClick={categorylisthandler}>
                 <li>
                   <Link
                     className={'all' === category ? 'active' : ''}
                     to='/search/category/all'
+                    // onClick={categorylisthandler}
                   >
                     Any
                   </Link>
                 </li>
                 {categories.map((c) => (
                   <li key={c}>
-                    <Link
+                    <Link 
                       className={c === category ? 'active' : ''}
-                      to={c}
+                      to={`/search/category/${c}`}
+                      
                     >
                       {c}
                     </Link>
@@ -90,11 +124,12 @@ export default function SearchScreen(props) {
             <LoadingBox></LoadingBox>
           ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
-          ) : (
+          )
+           : (
             <>
-              {products.length === 0 && (
+              {/* {(!name && products.length === 0) && (
                 <MessageBox>No Product Found</MessageBox>
-              )}
+              )} */}
               <div className="row center">
                 {products.map((product) => (
                   <Product key={product._id} product={product}></Product>
@@ -102,8 +137,13 @@ export default function SearchScreen(props) {
               </div>
               
             </>
-          )}
+          )
+        }
         </div>
+
+        
+
+
       </div>
     </div>
   );

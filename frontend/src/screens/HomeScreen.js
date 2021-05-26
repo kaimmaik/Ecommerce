@@ -22,9 +22,9 @@ export default function HomeScreen() {
     error: errorCategories,
     categories,
   } = productCategoryList;
-  useEffect(() => {
-    dispatch(listProductCategories());
-  }, [dispatch]);
+  // useEffect(() => {
+    
+  // }, [dispatch]);
 
   // const userTopSellersList = useSelector((state) => state.userTopSellersList);
   // const {
@@ -34,7 +34,8 @@ export default function HomeScreen() {
   // } = userTopSellersList;
 
   useEffect(() => {
-    dispatch(listProducts({}))
+    dispatch(listProducts());
+    dispatch(listProductCategories());
   }, [dispatch]);
   return (
     <div>

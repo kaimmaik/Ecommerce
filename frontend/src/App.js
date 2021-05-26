@@ -14,6 +14,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signout } from './actions/userActions';
 import ProfileScreen from './screens/ProfileScreen';
 import PrivateRoute from './components/PrivateRoute'
+import SearchBox from './components/SearchBox';
+import ProductsScreen from './screens/ProductsScreen';
+import ProductEditScreen from './screens/ProductEditScreen';
+import MapScreen from './screens/MapScreen';
+import SellerRoute from './components/SellerRoute'
+import ProductListScreen from './screens/ProductListScreen'
+import OrderListScreen from './screens/OrderScreen'
+import AdminRoute from './components/AdminRoute'
+import UserListScreen from './screens/UserListScreen';
+import UserEditScreen from './screens/UserEditScreen';
+import DashboardScreen from './screens/DashboardScreen';
+import SupportScreen from './screens/SupportScreen';
 function App() {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
@@ -23,64 +35,41 @@ function App() {
   const signoutHandler = () => {
     dispatch(signout());
   };
-
-
-
-  // const productCategoryList = useSelector((state) => state.productCategoryList);
-  // const {
-  //   loading: loadingCategories,
-  //   error: errorCategories,
-  //   categories,
-  // } = productCategoryList;
-  // useEffect(() => {
-  //   dispatch(listProductCategories());
-  // }, [dispatch]);
-
-  return (  
+  return (
     <BrowserRouter>
       <div className="grid-container">
         <header className="row">
-            <Link className="brand" to="/"/>
-
-
+          <Link className="brand" to="/" />
+          <div>
+            <Route
+              render={({ history }) => (
+                <SearchBox history={history}></SearchBox>
+              )}
+            ></Route>
+          </div>
           <div className="row">
-          <div className="badge">
-            <Link to="/cart">
-            
-            {cartItems.length > 0 ? (
-               <>{cartItems.length}
-                
-              </>
-              ): ('')}
-              <i className="fa fa-opencart"></i>
-            </Link>
+            <div className="badge">
+              <Link to="/cart">
+
+                {cartItems.length > 0 ? (
+                  <>{cartItems.length}</>
+                ) : ('')}
+                <i className="fa fa-opencart"></i>
+              </Link>
             </div>
-            {userInfo && userInfo.isSeller && (
-              <div className="dropdown">
-                <Link to="#admin">
-                  Seller <i className="fa fa-caret-down"></i>
-                </Link>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/productlist/seller">Products</Link>
-                  </li>
-                  <li>
-                    <Link to="/orderlist/seller">Orders</Link>
-                  </li>
-                </ul>
-              </div>
-            )}
-            {userInfo && userInfo.isAdmin && (
+
+            {userInfo && userInfo.isAdmin ? (
               <div className="dropdown">
                 <Link to="#admin">
                   Admin <i className="fa fa-caret-down"></i>
                 </Link>
                 <ul className="dropdown-content">
+
                   <li>
                     <Link to="/dashboard">Dashboard</Link>
                   </li>
                   <li>
-                    <Link to="/productlist">Products</Link>
+                    <Link to="/products">Products</Link>
                   </li>
                   <li>
                     <Link to="/orderlist">Orders</Link>
@@ -93,9 +82,29 @@ function App() {
                   </li>
                 </ul>
               </div>
-            )}
-
-          {userInfo ? (
+            )
+              :
+              (
+                <>
+                  {userInfo && userInfo.isSeller && (
+                    <div className="dropdown">
+                      <Link to="#admin">
+                        Seller <i className="fa fa-caret-down"></i>
+                      </Link>
+                      <ul className="dropdown-content">
+                        <li>
+                          <Link to="/productlist/seller">Products</Link>
+                        </li>
+                        <li>
+                          <Link to="/orderlist/seller">Orders</Link>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </>
+              )
+            }
+            {userInfo ? (
               <div className="dropdown">
                 <Link to="#">
                   {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
@@ -117,28 +126,13 @@ function App() {
             ) : (
               <Link to="/signin">Sign In</Link>
             )}
-
-
-
-
-
-
-
-            </div>
+          </div>
         </header>
-        <main>     
-          <span className="span"></span>       
-          <span className="span"></span>       
-         
+        <main>
+          <span className="span"></span>
+          <span className="span"></span>
           <Route path="/product/:id" component={ProductScreen} exact></Route>
-          
-          {/* <Route
-            path="/product/:id/edit"
-            component={ProductEditScreen}
-            exact
-          ></Route> */}
-          <Route path="/cart/:id?" component={CartScreen}></Route> 
-
+          <Route path="/cart/:id?" component={CartScreen}></Route>
           <Route path="/signin" component={SigninScreen}></Route>
           <Route path="/register" component={RegisterScreen}></Route>
           <Route path="/shipping" component={ShippingAddressScreen}></Route>
@@ -146,15 +140,20 @@ function App() {
           <Route path="/placeorder" component={PlaceOrderScreen}></Route>
           <Route path="/order/:id" component={OrderScreen}></Route>
           <Route path="/orderhistory" component={OrderHistoryScreen}></Route>
-          
-          
+          <Route path="/products" component={ProductsScreen} />
+          <PrivateRoute path="/map" component={MapScreen}></PrivateRoute>
+          <Route
+            path="/product/:id/edit"
+            component={ProductEditScreen}
+            exact
+          ></Route>
           <Route
             path="/search/name/:name?"
             component={SearchScreen}
             exact
           ></Route>
           <Route
-            path="/search/category/:category"
+            path="/search/category/:category?"
             component={SearchScreen}
             exact
           ></Route>
@@ -162,38 +161,14 @@ function App() {
             path="/profile"
             component={ProfileScreen}
           ></PrivateRoute>
-          {/* <Route
-            path="/search/name/:name?"
-            component={SearchScreen}
-            exact
-          ></Route>
-          <Route
-            path="/search/category/:category"
-            component={SearchScreen}
-            exact
-          ></Route>
-          <Route
-            path="/search/category/:category/name/:name"
-            component={SearchScreen}
-            exact
-          ></Route>
-          <Route
-            path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
-            component={SearchScreen}
-            exact
-          ></Route> */}
-          {/* 
-          <PrivateRoute path="/map" component={MapScreen}></PrivateRoute> */}
-          {/* <AdminRoute
-            path="/productlist"
+          <SellerRoute
+            path="/productlist/seller"
             component={ProductListScreen}
-            exact
-          ></AdminRoute>
-          <AdminRoute
-            path="/productlist/pageNumber/:pageNumber"
-            component={ProductListScreen}
-            exact
-          ></AdminRoute>
+          ></SellerRoute>
+          <SellerRoute
+            path="/orderlist/seller"
+            component={OrderListScreen}
+          ></SellerRoute>
           <AdminRoute
             path="/orderlist"
             component={OrderListScreen}
@@ -204,22 +179,11 @@ function App() {
             path="/user/:id/edit"
             component={UserEditScreen}
           ></AdminRoute>
-
           <AdminRoute
             path="/dashboard"
             component={DashboardScreen}
           ></AdminRoute>
           <AdminRoute path="/support" component={SupportScreen}></AdminRoute>
-
-          <SellerRoute
-            path="/productlist/seller"
-            component={ProductListScreen}
-          ></SellerRoute>
-          <SellerRoute
-            path="/orderlist/seller"
-            component={OrderListScreen}
-          ></SellerRoute> */}
-
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
         <footer className="row center">All right reserved</footer>

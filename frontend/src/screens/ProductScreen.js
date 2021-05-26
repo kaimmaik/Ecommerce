@@ -16,6 +16,10 @@ export const ProductScreen = (props) => {
  
     useEffect(()=>{
         dispatch(detailsProduct(productId))
+        // console.log(productId);
+        // console.log(loading);
+        // console.log(error);
+
     },[dispatch,productId])
 
     const addToCartHandler = () => {
@@ -36,7 +40,9 @@ export const ProductScreen = (props) => {
             {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
-        <MessageBox variant="danger">{error}</MessageBox>
+        <MessageBox variant="danger">{error}
+        
+        </MessageBox>
       ) : (
             <div className="row top">
                 
